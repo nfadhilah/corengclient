@@ -13,7 +13,8 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { BasicLayoutComponent } from '../layouts/basic-crud-layout/basic-layout.component';
+import { BasicLayoutComponent } from './components/basic-crud-layout/basic-layout.component';
+import { DynamicComponentHostDirective } from './directives/dynamic-component-host.directive';
 
 const antd = [
   NzCardModule,
@@ -44,7 +45,11 @@ const antd = [
     PerfectScrollbarModule,
     ...antd,
   ],
-  declarations: [SearchPipe, BasicLayoutComponent],
+  declarations: [
+    SearchPipe,
+    BasicLayoutComponent,
+    DynamicComponentHostDirective,
+  ],
   providers: [ThemeConstantService],
 })
 export class SharedModule {}

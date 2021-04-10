@@ -23,7 +23,6 @@ import { NgChartjsModule } from 'ng-chartjs';
 import { ThemeConstantService } from './shared/services/theme-constant.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationModule } from './authentication/authentication.module';
-import { FormsModule } from '@angular/forms';
 
 registerLocaleData(en);
 
