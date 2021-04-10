@@ -15,6 +15,8 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { BasicLayoutComponent } from './components/basic-crud-layout/basic-layout.component';
 import { DynamicComponentHostDirective } from './directives/dynamic-component-host.directive';
+import { CoreComponentComponent } from './components/core/core-component.component';
+import { CoreComponentFactory } from './components/core/core-component-factory';
 
 const antd = [
   NzCardModule,
@@ -35,6 +37,7 @@ const antd = [
     SearchPipe,
     ...antd,
     BasicLayoutComponent,
+    CoreComponentComponent,
   ],
   imports: [
     RouterModule,
@@ -49,7 +52,8 @@ const antd = [
     SearchPipe,
     BasicLayoutComponent,
     DynamicComponentHostDirective,
+    CoreComponentComponent,
   ],
-  providers: [ThemeConstantService],
+  providers: [ThemeConstantService, CoreComponentFactory],
 })
 export class SharedModule {}

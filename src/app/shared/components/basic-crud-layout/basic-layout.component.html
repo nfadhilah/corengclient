@@ -34,7 +34,9 @@
         <th *ngFor="let column of orderColumn" [nzSortFn]="column.compare">
           {{ column.title }}
         </th>
-        <th *ngIf="!readOnly">Action</th>
+        <th *ngIf="!readOnly && displayData && displayData.length">
+          Action {{ displayData }}
+        </th>
       </tr>
     </thead>
     <tbody>
