@@ -8,4 +8,11 @@ export const COMMON_LAYOUT_ROUTES: Routes = [
         (m) => m.DashboardModule
       ),
   },
+  {
+    path: 'page',
+    loadChildren: () =>
+      import('../../features/common-page/common-page.module').then(
+        (m) => m.CommonPageModule
+      ),
+  },
 ];

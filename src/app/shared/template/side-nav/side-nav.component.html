@@ -40,7 +40,7 @@
         <i class="ant-menu-submenu-arrow"></i>
       </a>
       <a
-        [routerLink]="item.id"
+        [routerLink]="['page', item.id]"
         (click)="closeMobileMenu()"
         *ngIf="item.children.length === 0"
       >
@@ -97,7 +97,7 @@
             <i class="ant-menu-submenu-arrow"></i>
           </a>
           <a
-            [routerLink]="subItem.id"
+            [routerLink]="['page', subItem.id]"
             (click)="closeMobileMenu()"
             class="p-l-30"
             *ngIf="subItem.children.length === 0"
@@ -151,22 +151,22 @@
                 <i class="ant-menu-submenu-arrow"></i>
               </a>
               <a
-                [routerLink]="subItem.id"
+                [routerLink]="['page', subItem.id]"
                 (click)="closeMobileMenu()"
                 class="p-l-50"
                 *ngIf="subItem.children.length === 0"
               >
-                <!--                <i-->
-                <!--                  *ngIf="subItem.iconType == 'nzIcon'"-->
-                <!--                  nz-icon-->
-                <!--                  [nzType]="subItem.icon"-->
-                <!--                  [theme]="subItem.iconTheme"-->
-                <!--                ></i>-->
-                <!--                <i-->
-                <!--                  *ngIf="subItem.iconType == 'fontawesome'"-->
-                <!--                  class="m-r-10"-->
-                <!--                  [ngClass]="[subItem.iconTheme, subItem.icon]"-->
-                <!--                ></i>-->
+                <i
+                  *ngIf="subItem.iconType == 'nzIcon'"
+                  nz-icon
+                  [nzType]="subItem.icon"
+                  [theme]="subItem.iconTheme"
+                ></i>
+                <i
+                  *ngIf="subItem.iconType == 'fontawesome'"
+                  class="m-r-10"
+                  [ngClass]="[subItem.iconTheme, subItem.icon]"
+                ></i>
                 <span>{{ subItem.name }}</span>
               </a>
             </li>
