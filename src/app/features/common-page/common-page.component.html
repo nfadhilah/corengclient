@@ -1,1 +1,4 @@
-<app-core-component></app-core-component>
+<app-core-component
+  [config]="config$ | async"
+  [data]="data$ | async"
+></app-core-component>

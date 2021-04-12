@@ -5,6 +5,7 @@
       'ant-menu-inline-collapsed': isFolded,
       'ant-menu-dark': isSideNavDark
     }"
+    *ngIf="menuItems$ | async as menuItems"
   >
     <li
       [ngClass]="
@@ -98,7 +99,7 @@
           </a>
           <a
             [routerLink]="['page', subItem.id]"
-            (click)="closeMobileMenu()"
+            (click)="closeMobileMenu(); setSelected(subItem)"
             class="p-l-30"
             *ngIf="subItem.children.length === 0"
           >

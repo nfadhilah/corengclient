@@ -17,17 +17,26 @@ import { BasicLayoutComponent } from './components/basic-crud-layout/basic-layou
 import { DynamicComponentHostDirective } from './directives/dynamic-component-host.directive';
 import { CoreComponentComponent } from './components/core/core-component.component';
 import { CoreComponentFactory } from './components/core/core-component-factory';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { IconFilterPipe } from './pipes/iconFilter.pipe';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 
 const antd = [
+  NzPopconfirmModule,
   NzCardModule,
   NzButtonModule,
   NzInputModule,
   NzTableModule,
   NzDropDownModule,
+  NzSpinModule,
+  NzTagModule,
 ];
 
 @NgModule({
   exports: [
+    ...antd,
     CommonModule,
     FormsModule,
     HttpClientModule,
@@ -35,24 +44,26 @@ const antd = [
     NzIconModule,
     PerfectScrollbarModule,
     SearchPipe,
-    ...antd,
+    IconFilterPipe,
     BasicLayoutComponent,
     CoreComponentComponent,
   ],
   imports: [
+    ...antd,
     RouterModule,
     CommonModule,
     FormsModule,
     NzIconModule,
     NzToolTipModule,
     PerfectScrollbarModule,
-    ...antd,
   ],
   declarations: [
     SearchPipe,
+    IconFilterPipe,
     BasicLayoutComponent,
     DynamicComponentHostDirective,
     CoreComponentComponent,
+    DynamicFormComponent,
   ],
   providers: [ThemeConstantService, CoreComponentFactory],
 })
