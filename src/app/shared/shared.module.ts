@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -21,7 +21,18 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { IconFilterPipe } from './pipes/iconFilter.pipe';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzModalModule, NzModalRef } from 'ng-zorro-antd/modal';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { FormlySelectModule } from '@ngx-formly/core/select';
+import { FormlyModule } from '@ngx-formly/core';
+import {
+  VALIDATION_MESSAGES_CONFIG,
+  VALIDATORS_CONFIG,
+} from './formly/core-formly.validators';
+import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+import { FormlyFieldNzAutoselectComponent } from './formly/custom-field/formly-field-nz-autoselect.component';
 
 const antd = [
   NzPopconfirmModule,
@@ -32,9 +43,35 @@ const antd = [
   NzDropDownModule,
   NzSpinModule,
   NzTagModule,
+  NzFormModule,
+  NzModalModule,
+  NzSelectModule,
 ];
 
 @NgModule({
+  imports: [
+    ...antd,
+    RouterModule,
+    CommonModule,
+    FormsModule,
+    NzIconModule,
+    NzToolTipModule,
+    PerfectScrollbarModule,
+    ReactiveFormsModule,
+    FormlySelectModule,
+    FormlyModule.forRoot({
+      validators: VALIDATORS_CONFIG,
+      validationMessages: VALIDATION_MESSAGES_CONFIG,
+      types: [
+        {
+          name: 'autoselect',
+          component: FormlyFieldNzAutoselectComponent,
+          wrappers: ['form-field'],
+        },
+      ],
+    }),
+    FormlyNgZorroAntdModule,
+  ],
   exports: [
     ...antd,
     CommonModule,
@@ -47,15 +84,10 @@ const antd = [
     IconFilterPipe,
     BasicLayoutComponent,
     CoreComponentComponent,
-  ],
-  imports: [
-    ...antd,
-    RouterModule,
-    CommonModule,
-    FormsModule,
-    NzIconModule,
-    NzToolTipModule,
-    PerfectScrollbarModule,
+    ReactiveFormsModule,
+    FormlyModule,
+    DynamicFormComponent,
+    FormlyFieldNzAutoselectComponent,
   ],
   declarations: [
     SearchPipe,
@@ -64,6 +96,7 @@ const antd = [
     DynamicComponentHostDirective,
     CoreComponentComponent,
     DynamicFormComponent,
+    FormlyFieldNzAutoselectComponent,
   ],
   providers: [ThemeConstantService, CoreComponentFactory],
 })

@@ -29,13 +29,13 @@ export class CommonPageResolver implements Resolve<any> {
     return this.uiStateQuery
       .select((uiState) => uiState.selectedMenu)
       .pipe(
-        switchMap((uiState) => {
-          if (!uiState) return this.router.navigateByUrl('/');
+        switchMap((activeMenu) => {
+          if (!activeMenu) return this.router.navigateByUrl('/');
 
-          if (!uiState || !uiState.resourceName)
+          if (!activeMenu || !activeMenu.resourceName)
             return this.router.navigateByUrl('/not-found');
 
-          return this.http.get(`/api/${uiState.resourceName}`).pipe(
+          return this.http.get(`/api/${activeMenu.resourceName}`).pipe(
             map((res: any) => {
               this.uiStateStore.update(() => ({
                 config: res.config,

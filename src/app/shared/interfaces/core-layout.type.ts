@@ -6,5 +6,5 @@ export interface CoreLayout {
   editEvent?: EventEmitter<any>;
   addEvent?: EventEmitter<any>;
   viewDetailEvent?: EventEmitter<any>;
-  data: any[];
+  data?: any[];
 }
