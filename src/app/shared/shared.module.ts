@@ -33,6 +33,7 @@ import {
 import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { FormlyFieldNzAutoselectComponent } from './formly/custom-field/formly-field-nz-autoselect.component';
+import { DetailPageComponent } from './components/detail-page/detail-page.component';
 
 const antd = [
   NzPopconfirmModule,
@@ -97,6 +98,7 @@ const antd = [
     CoreComponentComponent,
     DynamicFormComponent,
     FormlyFieldNzAutoselectComponent,
+    DetailPageComponent,
   ],
   providers: [ThemeConstantService, CoreComponentFactory],
 })

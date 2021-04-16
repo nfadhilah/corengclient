@@ -30,6 +30,7 @@
     "@datorama/akita-ng-entity-service": "^6.0.0",
     "@datorama/akita-ng-router-store": "^6.0.0",
     "@fortawesome/fontawesome-free": "^5.15.1",
+    "@ngneat/until-destroy": "^8.0.4",
     "@ngx-formly/core": "^5.10.17",
     "@ngx-formly/ng-zorro-antd": "0.0.1",
     "chart.js": "^2.9.4",

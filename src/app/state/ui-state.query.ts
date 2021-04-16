@@ -7,6 +7,7 @@ export class UiStateQuery extends Query<UiStateState> {
   menuItems$ = this.select((state) => state.menuItems);
   config$ = this.select((state) => state.config);
   data$ = this.select((state) => state.data);
+  selectedMenu$ = this.select((state) => state.selectedMenu);
 
   constructor(protected store: UiStateStore) {
     super(store);

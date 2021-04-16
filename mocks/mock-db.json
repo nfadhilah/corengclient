@@ -149,7 +149,7 @@
         },
         {
           "id": "44",
-          "name": "Surat Permintaan Pembayaran",
+          "name": "SPP UP",
           "enable": false,
           "visible": false,
           "uiTemplate": 1,
@@ -157,6 +157,7 @@
           "iconType": "",
           "iconTheme": "",
           "icon": "",
+          "resourceName": "spp",
           "children": []
         },
         {
@@ -224,123 +225,171 @@
     }
   ],
   "rka": {
-      "config": {
-        "view": {
-          "searchColumns": "kode, uraian, sbdana",
-          "orderColumn": [
-            {
-              "key": "kode",
-              "title": "Kode Rekening",
-              "type": "string",
-              "tagColor": "cyan"
-            },
-            {
-              "key": "sbdana",
-              "title": "Sumber Dana",
-              "type": "string",
-              "tagColor": "blue"
-            },
-            {
-              "key": "jumlah",
-              "title": "Jumlah Anggaran",
-              "type": "currency",
-              "tagColor": "volcano"
-            }
-          ]
-        },
-        "form": [
+    "config": {
+      "view": {
+        "searchColumns": "kode, uraian, sbdana",
+        "orderColumn": [
           {
             "key": "kode",
-            "type": "autoselect",
-            "templateOptions": {
-              "label": "Rekening Belanja",
-              "placeholder": "Pilih Rekening Belanja",
-              "options": [
-                {
-                  "label": "5.1.01.01.01.0001. Belanja Gaji Pokok PNS",
-                  "value": "5.1.01.01.01.0001. Belanja Gaji Pokok PNS"
-                },
-                {
-                  "label": "5.1.01.01.02.0001. Belanja Tunjangan Keluarga PNS",
-                  "value": "5.1.01.01.02.0001. Belanja Tunjangan Keluarga PNS"
-                },
-                {
-                  "label": "5.1.01.01.03.0001. Belanja Tunjangan Jabatan PNS",
-                  "value": "5.1.01.01.03.0001. Belanja Tunjangan Jabatan PNS"
-                },
-                {
-                  "label": "5.1.01.01.04.0001. Belanja Tunjangan Fungsional PNS",
-                  "value": "5.1.01.01.04.0001. Belanja Tunjangan Fungsional PNS"
-                },
-                {
-                  "label": "5.1.01.01.06.0001. Belanja Tunjangan Beras PNS",
-                  "value": "5.1.01.01.06.0001. Belanja Tunjangan Beras PNS"
-                }
-              ],
-              "required": true
-            }
+            "title": "Kode Rekening",
+            "type": "string",
+            "tagColor": "cyan"
           },
           {
             "key": "sbdana",
-            "type": "select",
-            "templateOptions": {
-              "label": "Sumber Dana",
-              "placeholder": "Pilih Sumber Dana",
-              "required": true,
-              "options": [
-                {
-                  "label": "DAU",
-                  "value": "DAU"
-                },
-                {
-                  "label": "DAK",
-                  "value": "DAK"
-                }
-              ]
-            }
+            "title": "Sumber Dana",
+            "type": "string",
+            "tagColor": "blue"
           },
           {
             "key": "jumlah",
-            "type": "input",
-            "templateOptions": {
-              "label": "Nilai",
-              "placeholder": "Masukkan Jumlah Anggaran",
-              "required": true
-            }
+            "title": "Jumlah Anggaran",
+            "type": "currency",
+            "tagColor": "volcano"
           }
         ]
       },
-      "data": [
+      "form": [
         {
-          "id": 1,
-          "kode": "5.1.01.01.01.0001. Belanja Gaji Pokok PNS",
-          "sbdana": "DAU",
-          "jumlah": 62653940940
+          "key": "kode",
+          "type": "autoselect",
+          "templateOptions": {
+            "label": "Rekening Belanja",
+            "placeholder": "Pilih Rekening Belanja",
+            "options": [
+              {
+                "label": "5.1.01.01.01.0001. Belanja Gaji Pokok PNS",
+                "value": "5.1.01.01.01.0001. Belanja Gaji Pokok PNS"
+              },
+              {
+                "label": "5.1.01.01.02.0001. Belanja Tunjangan Keluarga PNS",
+                "value": "5.1.01.01.02.0001. Belanja Tunjangan Keluarga PNS"
+              },
+              {
+                "label": "5.1.01.01.03.0001. Belanja Tunjangan Jabatan PNS",
+                "value": "5.1.01.01.03.0001. Belanja Tunjangan Jabatan PNS"
+              },
+              {
+                "label": "5.1.01.01.04.0001. Belanja Tunjangan Fungsional PNS",
+                "value": "5.1.01.01.04.0001. Belanja Tunjangan Fungsional PNS"
+              },
+              {
+                "label": "5.1.01.01.06.0001. Belanja Tunjangan Beras PNS",
+                "value": "5.1.01.01.06.0001. Belanja Tunjangan Beras PNS"
+              }
+            ],
+            "required": true
+          }
         },
         {
-          "id": 2,
-          "kode": "5.1.01.01.02.0001. Belanja Tunjangan Keluarga PNS",
-          "sbdana": "DAU",
-          "jumlah": 10215174760
+          "key": "sbdana",
+          "type": "select",
+          "templateOptions": {
+            "label": "Sumber Dana",
+            "placeholder": "Pilih Sumber Dana",
+            "required": true,
+            "options": [
+              {
+                "label": "DAU",
+                "value": "DAU"
+              },
+              {
+                "label": "DAK",
+                "value": "DAK"
+              }
+            ]
+          }
         },
         {
-          "id": 3,
-          "kode": "5.1.01.01.03.0001. Belanja Tunjangan Jabatan PNS",
-          "sbdana": "DAU",
-          "jumlah": 246540000
-        },
-        {
-          "id": 4,
-          "kode": "5.1.01.01.04.0001. Belanja Tunjangan Fungsional PNS",
-          "sbdana": "DAU",
-          "jumlah": 7669470326
-        },
-        {
-          "id": 5,
-          "kode": "5.1.01.01.06.0001. Belanja Tunjangan Beras PNS",
-          "sbdana": "DAU",
-          "jumlah": 4018140000
+          "key": "jumlah",
+          "type": "input",
+          "templateOptions": {
+            "label": "Nilai",
+            "placeholder": "Masukkan Jumlah Anggaran",
+            "required": true
+          }
         }
       ]
-    }
+    },
+    "data": [
+      {
+        "id": 1,
+        "kode": "5.1.01.01.01.0001. Belanja Gaji Pokok PNS",
+        "sbdana": "DAU",
+        "jumlah": 62653940940
+      },
+      {
+        "id": 2,
+        "kode": "5.1.01.01.02.0001. Belanja Tunjangan Keluarga PNS",
+        "sbdana": "DAU",
+        "jumlah": 10215174760
+      },
+      {
+        "id": 3,
+        "kode": "5.1.01.01.03.0001. Belanja Tunjangan Jabatan PNS",
+        "sbdana": "DAU",
+        "jumlah": 246540000
+      },
+      {
+        "id": 4,
+        "kode": "5.1.01.01.04.0001. Belanja Tunjangan Fungsional PNS",
+        "sbdana": "DAU",
+        "jumlah": 7669470326
+      },
+      {
+        "id": 5,
+        "kode": "5.1.01.01.06.0001. Belanja Tunjangan Beras PNS",
+        "sbdana": "DAU",
+        "jumlah": 4018140000
+      }
+    ]
+  },
+  "spp": {
+    "config": {
+      "view": {
+        "searchColumns": "noSpp, tglSpp, tglSah, noSPD, nilai",
+        "orderColumn": [
+          {
+            "key": "noSpp",
+            "title": "Nomor",
+            "type": "string",
+            "tagColor": "cyan"
+          },
+          {
+            "key": "tglSpp",
+            "title": "Tanggal",
+            "type": "string",
+            "tagColor": "blue"
+          },
+          {
+            "key": "tglSah",
+            "title": "Tanggal Sah",
+            "type": "date",
+            "tagColor": "volcano"
+          },
+          {
+            "key": "noSPD",
+            "title": "No SPD",
+            "type": "string",
+            "tagColor": "volcano"
+          },
+          {
+            "key": "nilai",
+            "title": "Nilai",
+            "type": "currency"
+          }
+        ]
+      }
+    },
+    "data": [
+      {
+        "id": 1,
+        "noSpp": "0003/SPP-UP/1.01.2.19.0.00.01/II/2021",
+        "tglSpp": "08/02/2021",
+        "tglSah": null,
+        "noSPD": "00003/SPD/1.01.2.19.0.00.01/I/2021",
+        "nilai": 550000000.00
+      }
+    ]
+  }
 }

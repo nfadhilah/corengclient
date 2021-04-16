@@ -1,7 +1,6 @@
 import {
   Component,
   ComponentFactoryResolver,
-  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -10,10 +9,13 @@ import { CoreComponentFactory } from './core-component-factory';
 import { CoreLayout } from '../../interfaces/core-layout.type';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
-import { filter, first, take, tap } from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { UiStateQuery } from '../../../state';
+import { combineLatest } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-core-component',
   templateUrl: './core-component.component.html',
@@ -21,8 +23,8 @@ import { UiStateQuery } from '../../../state';
 export class CoreComponentComponent implements OnInit {
   @ViewChild(DynamicComponentHostDirective, { static: true })
   host: DynamicComponentHostDirective;
-  @Input() config: any;
-  @Input() data: any[];
+  config: any;
+  data: any[];
   apiResourceName: string;
   coreLayoutRef: CoreLayout;
 
@@ -35,18 +37,28 @@ export class CoreComponentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const state = this.uiStateQuery.getValue();
-    this.apiResourceName = state.selectedMenu
-      ? state.selectedMenu.resourceName
-      : '';
-    if (!this.apiResourceName)
-      throw Error('Resource name cannot be null or empty.');
+    const combineObs$ = combineLatest([
+      this.uiStateQuery.selectedMenu$,
+      this.uiStateQuery.config$,
+      this.uiStateQuery.data$,
+    ]);
 
-    this.loadComponent();
+    combineObs$.pipe(untilDestroyed(this)).subscribe((obs) => {
+      const [{ resourceName, uiTemplate }, config, data] = obs;
+      this.apiResourceName = resourceName;
+
+      if (!this.apiResourceName)
+        throw Error('Resource name cannot be null or empty.');
+
+      this.config = config;
+      this.data = data;
+
+      this.loadComponent(uiTemplate);
+    });
   }
 
-  loadComponent() {
-    this.componentFactory.component = 1;
+  loadComponent(uiTemplate) {
+    this.componentFactory.component = uiTemplate;
     const componentFactory = this.componentFactory.component;
 
     const viewContainerRef = this.host.viewContainerRef;
@@ -57,6 +69,7 @@ export class CoreComponentComponent implements OnInit {
 
     coreLayout.config = this.config;
     coreLayout.data = this.data;
+    coreLayout.viewDetailEvent.subscribe((item) => this.onViewDetail(item));
     coreLayout.addEvent.subscribe(() => this.onAdd());
     coreLayout.editEvent.subscribe((item) => this.onEdit(item));
     coreLayout.deleteEvent.subscribe((item) => this.onDelete(coreLayout, item));
@@ -112,5 +125,13 @@ export class CoreComponentComponent implements OnInit {
   onDelete(ref: CoreLayout, item: any) {
     ref.data = ref.data.filter((d) => d.id !== item.id);
     // this.http.delete(`/api/${resourceName}/${item.id}`).subscribe();
+  }
+
+  onViewDetail(item) {
+    this.componentFactory.component = 2;
+    const componentFactory = this.componentFactory.component;
+    const viewContainerRef = this.host.viewContainerRef;
+    viewContainerRef.clear();
+    viewContainerRef.createComponent(componentFactory);
   }
 }

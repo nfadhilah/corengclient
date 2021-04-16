@@ -1,5 +1,6 @@
 import { ComponentFactoryResolver, Injectable } from '@angular/core';
 import { BasicLayoutComponent } from '../basic-crud-layout/basic-layout.component';
+import { DetailPageComponent } from '../detail-page/detail-page.component';
 
 @Injectable()
 export class CoreComponentFactory {
@@ -16,6 +17,10 @@ export class CoreComponentFactory {
           BasicLayoutComponent
         );
         break;
+      case 2:
+        this._component = this.componentFactoryResolver.resolveComponentFactory(
+          DetailPageComponent
+        );
     }
   }
 

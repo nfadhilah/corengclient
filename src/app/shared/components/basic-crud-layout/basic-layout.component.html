@@ -43,14 +43,10 @@
           <td *ngFor="let column of orderColumn">
             <ng-container [ngSwitch]="column.type">
               <ng-container *ngSwitchCase="'currency'">
-                <nz-tag [nzColor]="column.tagColor">{{
-                  item[column.key] | currency: "IDR"
-                }}</nz-tag>
+                {{ item[column.key] | currency: "IDR" }}
               </ng-container>
               <ng-container *ngSwitchDefault>
-                <nz-tag [nzColor]="column.tagColor"
-                  >{{ item[column.key] }}
-                </nz-tag>
+                {{ item[column.key] }}
               </ng-container>
             </ng-container>
           </td>
