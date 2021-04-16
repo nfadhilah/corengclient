@@ -1,6 +1,7 @@
 import {
   Component,
   ComponentFactoryResolver,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -20,7 +21,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   selector: 'app-core-component',
   templateUrl: './core-component.component.html',
 })
-export class CoreComponentComponent implements OnInit {
+export class CoreComponentComponent implements OnInit, OnDestroy {
   @ViewChild(DynamicComponentHostDirective, { static: true })
   host: DynamicComponentHostDirective;
   config: any;
@@ -133,5 +134,9 @@ export class CoreComponentComponent implements OnInit {
     const viewContainerRef = this.host.viewContainerRef;
     viewContainerRef.clear();
     viewContainerRef.createComponent(componentFactory);
+  }
+
+  ngOnDestroy(): void {
+    console.log('component destroy...');
   }
 }

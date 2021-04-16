@@ -33,6 +33,7 @@
     "@ngneat/until-destroy": "^8.0.4",
     "@ngx-formly/core": "^5.10.17",
     "@ngx-formly/ng-zorro-antd": "0.0.1",
+    "angular-disable-browser-back-button": "^1.0.2",
     "chart.js": "^2.9.4",
     "date-fns": "^2.16.1",
     "jquery": "^3.5.1",

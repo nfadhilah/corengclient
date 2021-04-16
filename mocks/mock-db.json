@@ -379,7 +379,27 @@
             "type": "currency"
           }
         ]
-      }
+      },
+      "form": [
+        {
+          "key": "noSpp",
+          "type": "input",
+          "templateOptions": {
+            "label": "No SPP",
+            "placeholder": "Masukkan Nomor SPP",
+            "required": true
+          }
+        },
+        {
+          "key": "nilai",
+          "type": "input",
+          "templateOptions": {
+            "label": "Nilai",
+            "placeholder": "Masukkan Nilai SPP",
+            "required": true
+          }
+        }
+      ]
     },
     "data": [
       {

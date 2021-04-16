@@ -27,6 +27,7 @@ import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from '../environments/environment';
+import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 
 registerLocaleData(id);
 
@@ -44,6 +45,7 @@ registerLocaleData(id);
     AuthenticationModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
     AkitaNgRouterStoreModule,
+    BackButtonDisableModule.forRoot({ preserveScrollPosition: true }),
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'id_ID' },
