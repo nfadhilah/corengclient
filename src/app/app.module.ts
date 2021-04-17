@@ -64,6 +64,6 @@ registerLocaleData(id);
     },
   ],
   bootstrap: [AppComponent],
-  exports: [],
+  exports: [CommonLayoutComponent],
 })
 export class AppModule {}

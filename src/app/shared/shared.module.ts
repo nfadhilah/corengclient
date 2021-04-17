@@ -34,6 +34,13 @@ import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { FormlyFieldNzAutoselectComponent } from './formly/custom-field/formly-field-nz-autoselect.component';
 import { DetailPageComponent } from './components/detail-page/detail-page.component';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzTimelineModule } from 'ng-zorro-antd/timeline';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 
 const antd = [
   NzPopconfirmModule,
@@ -47,6 +54,13 @@ const antd = [
   NzFormModule,
   NzModalModule,
   NzSelectModule,
+  NzAvatarModule,
+  NzTabsModule,
+  NzPaginationModule,
+  NzTimelineModule,
+  NzCheckboxModule,
+  NzListModule,
+  NzDescriptionsModule,
 ];
 
 @NgModule({
@@ -89,6 +103,7 @@ const antd = [
     FormlyModule,
     DynamicFormComponent,
     FormlyFieldNzAutoselectComponent,
+    DetailPageComponent,
   ],
   declarations: [
     SearchPipe,

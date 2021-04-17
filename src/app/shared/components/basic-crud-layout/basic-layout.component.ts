@@ -28,8 +28,10 @@ export class BasicLayoutComponent implements OnInit, CoreLayout {
   @Input() config: any;
 
   ngOnInit(): void {
-    this.orderColumn = this.config.view.orderColumn;
-    this.searchColumns = this.config.view.searchColumns;
+    if (this.config && this.config.view) {
+      this.orderColumn = this.config.view.orderColumn;
+      this.searchColumns = this.config.view.searchColumns;
+    }
   }
 
   onAdd() {

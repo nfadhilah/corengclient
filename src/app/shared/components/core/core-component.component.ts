@@ -1,7 +1,6 @@
 import {
   Component,
   ComponentFactoryResolver,
-  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -15,13 +14,14 @@ import { HttpClient } from '@angular/common/http';
 import { UiStateQuery } from '../../../state';
 import { combineLatest } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @UntilDestroy()
 @Component({
   selector: 'app-core-component',
   templateUrl: './core-component.component.html',
 })
-export class CoreComponentComponent implements OnInit, OnDestroy {
+export class CoreComponentComponent implements OnInit {
   @ViewChild(DynamicComponentHostDirective, { static: true })
   host: DynamicComponentHostDirective;
   config: any;
@@ -34,7 +34,9 @@ export class CoreComponentComponent implements OnInit, OnDestroy {
     private componentFactory: CoreComponentFactory,
     private nzModalService: NzModalService,
     private http: HttpClient,
-    private uiStateQuery: UiStateQuery
+    private uiStateQuery: UiStateQuery,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -46,14 +48,14 @@ export class CoreComponentComponent implements OnInit, OnDestroy {
 
     combineObs$.pipe(untilDestroyed(this)).subscribe((obs) => {
       const [{ resourceName, uiTemplate }, config, data] = obs;
-      this.apiResourceName = resourceName;
 
-      if (!this.apiResourceName)
+      if (!resourceName) {
         throw Error('Resource name cannot be null or empty.');
+      }
+      this.apiResourceName = resourceName;
 
       this.config = config;
       this.data = data;
-
       this.loadComponent(uiTemplate);
     });
   }
@@ -129,14 +131,13 @@ export class CoreComponentComponent implements OnInit, OnDestroy {
   }
 
   onViewDetail(item) {
-    this.componentFactory.component = 2;
-    const componentFactory = this.componentFactory.component;
-    const viewContainerRef = this.host.viewContainerRef;
-    viewContainerRef.clear();
-    viewContainerRef.createComponent(componentFactory);
-  }
-
-  ngOnDestroy(): void {
-    console.log('component destroy...');
+    return this.router.navigate(['detail', item.id], {
+      relativeTo: this.route,
+    });
+    // this.componentFactory.component = 2;
+    // const componentFactory = this.componentFactory.component;
+    // const viewContainerRef = this.host.viewContainerRef;
+    // viewContainerRef.clear();
+    // viewContainerRef.createComponent(componentFactory);
   }
 }

@@ -1,1 +1,113 @@
-<button nz-button (click)="back()">Back</button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+      <nz-card>
+        <div>
+          <nz-descriptions nzBordered nzTitle="Rincian SPP">
+            <nz-descriptions-item nzTitle="No. SPP" nzSpan="3"
+              >0003/SPP-UP/1.01.2.19.0.00.01/II/2021</nz-descriptions-item
+            >
+            <nz-descriptions-item nzTitle="Tanggal Pengajuan" nzSpan="3"
+              >0003/SPP-UP/1.01.2.19.0.00.01/II/2021</nz-descriptions-item
+            >
+            <nz-descriptions-item
+              nzTitle="Tanggal Pengesahan"
+              nzSpan="3"
+            ></nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Nilai" nzSpan="3"
+              >Rp.550.000.000,00
+            </nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Cetak" nzSpan="3"
+              ><button nz-button nzType="primary" nzShape="square">
+                <i nz-icon nzType="printer" nzTheme="outline"></i></button
+            ></nz-descriptions-item>
+          </nz-descriptions>
+        </div>
+        <div
+          class="d-md-flex m-t-30 align-items-center justify-content-between"
+        >
+          <div>
+            <button nz-button (click)="back()">Back</button>
+          </div>
+        </div>
+        <div class="off-gutter-x m-t-30">
+          <nz-tabset>
+            <nz-tab nzTitle="Pembebanan">
+              <div class="p-h-30 p-v-25">
+                <app-basic-layout></app-basic-layout>
+              </div>
+            </nz-tab>
+            <nz-tab nzTitle="Pajak">
+              <div class="p-h-30 p-v-25">
+                <app-basic-layout></app-basic-layout>
+              </div>
+            </nz-tab>
+          </nz-tabset>
+        </div>
+      </nz-card>
+    </div>
+    <div class="col-md-4">
+      <nz-card nzTitle="Aktifitas Dokumen">
+        <nz-timeline>
+          <nz-timeline-item
+            *ngFor="let item of activityList"
+            [nzDot]="dotTemplate"
+          >
+            <div class="m-l-20">
+              <div class="media align-items-center">
+                <nz-avatar [nzSrc]="item.avatar"></nz-avatar>
+                <div class="m-l-10">
+                  <h6 class="m-b-0">{{ item.name }}</h6>
+                  <span class="text-muted font-size-13">
+                    <i nz-icon nzType="clock-circle" theme="outline"></i>
+                    <span class="m-l-5">{{ item.date }}</span>
+                  </span>
+                </div>
+              </div>
+              <div class="m-t-20">
+                <p class="m-l-20">
+                  <span class="text-dark font-weight-semibold"
+                    >{{ item.action }}
+                  </span>
+                  <span class="m-l-5"> {{ item.target }}</span>
+                </p>
+              </div>
+            </div>
+            <ng-template #dotTemplate>
+              <nz-avatar
+                *ngIf="item.actionType == 'completed'"
+                [nzSize]="25"
+                class="ant-avatar-cyan"
+                nzIcon="check"
+              ></nz-avatar>
+              <nz-avatar
+                *ngIf="item.actionType == 'upload'"
+                [nzSize]="25"
+                class="ant-avatar-blue"
+                nzIcon="link"
+              ></nz-avatar>
+              <nz-avatar
+                *ngIf="item.actionType == 'comment'"
+                [nzSize]="25"
+                class="ant-avatar-purple"
+                nzIcon="message"
+              ></nz-avatar>
+              <nz-avatar
+                *ngIf="item.actionType == 'removed'"
+                [nzSize]="25"
+                class="ant-avatar-red"
+                nzIcon="delete"
+              ></nz-avatar>
+              <nz-avatar
+                *ngIf="item.actionType == 'created'"
+                [nzSize]="25"
+                class="ant-avatar-gold"
+                nzIcon="file-add"
+              ></nz-avatar>
+            </ng-template>
+          </nz-timeline-item>
+        </nz-timeline>
+      </nz-card>
+    </div>
+  </div>
+</div>
