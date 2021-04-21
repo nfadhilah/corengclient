@@ -41,6 +41,7 @@ import { NzTimelineModule } from 'ng-zorro-antd/timeline';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 const antd = [
   NzPopconfirmModule,
